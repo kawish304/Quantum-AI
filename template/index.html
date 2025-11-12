@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Silicon Valley Ka Baap AI</title>
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="static/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo-section">
+                <div class="logo">🚀 Silicon Baap AI</div>
+                <div class="tagline">ULTIMATE AI POWER • PAKISTAN MADE</div>
+            </div>
+            
+            <!-- Core AI Features -->
+            <div class="feature-category">
+                <div class="category-title">Core AI</div>
+                <button class="feature-btn active" data-feature="sb">
+                    <span>🤖</span>
+                    SB - Ultimate Mode
+                </button>
+                <button class="feature-btn" data-feature="chat">
+                    <span>💬</span>
+                    AI Chat Assistant
+                </button>
+                <button class="feature-btn" data-feature="quantum_chat">
+                    <span>🚀</span>
+                    Quantum Chat
+                </button>
+            </div>
+            
+            <!-- Code & Tech -->
+            <div class="feature-category">
+                <div class="category-title">Code & Tech</div>
+                <button class="feature-btn" data-feature="code_analyzer">
+                    <span>🧠</span>
+                    Code Analyzer
+                </button>
+                <button class="feature-btn" data-feature="code_genius">
+                    <span>💻</span>
+                    Code Genius
+                </button>
+                <button class="feature-btn" data-feature="web_dev_master">
+                    <span>🌐</span>
+                    Web Development
+                </button>
+                <button class="feature-btn" data-feature="bug_detector">
+                    <span>🐛</span>
+                    Bug Detector
+                </button>
+            </div>
+            
+            <!-- Data & Analysis -->
+            <div class="feature-category">
+                <div class="category-title">Data & Analysis</div>
+                <button class="feature-btn" data-feature="data_analyzer">
+                    <span>📊</span>
+                    Data Analyzer
+                </button>
+                <button class="feature-btn" data-feature="data_science_pro">
+                    <span>🔬</span>
+                    Data Science
+                </button>
+                <button class="feature-btn" data-feature="summary_maker">
+                    <span>📝</span>
+                    Text Summarizer
+                </button>
+            </div>
+            
+            <!-- Creative -->
+            <div class="feature-category">
+                <div class="category-title">Creative</div>
+                <button class="feature-btn" data-feature="idea_generator">
+                    <span>💡</span>
+                    Idea Generator
+                </button>
+                <button class="feature-btn" data-feature="content_creator">
+                    <span>✍️</span>
+                    Content Creator
+                </button>
+                <button class="feature-btn" data-feature="image_reader">
+                    <span>🖼️</span>
+                    Image Reader
+                </button>
+            </div>
+            
+            <!-- Utilities -->
+            <div class="feature-category">
+                <div class="category-title">Utilities</div>
+                <button class="feature-btn" data-feature="file_reader">
+                    <span>📁</span>
+                    File Reader
+                </button>
+                <button class="feature-btn" data-feature="web_scraper">
+                    <span>🌐</span>
+                    Web Scraper
+                </button>
+                <button class="feature-btn" data-feature="text_translator">
+                    <span>🔤</span>
+                    Text Translator
+                </button>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <div class="current-feature" id="currentFeature">AI Chat Assistant</div>
+                <div class="header-controls">
+                    <select class="model-selector" id="modelSelect">
+                        <option value="llama3-70b-8192">🦙 Llama 3 70B</option>
+                        <option value="llama3-8b-8192">⚡ Llama 3 8B</option>
+                        <option value="mixtral-8x7b-32768">🎯 Mixtral 8x7B</option>
+                        <option value="gemma2-9b-it">💎 Gemma 2 9B</option>
+                    </select>
+                    <button class="file-btn" id="clearChat">🗑️ Clear</button>
+                </div>
+            </div>
+            
+            <div class="chat-container">
+                <div class="messages-container" id="messagesContainer">
+                    <!-- Welcome Message -->
+                    <div class="welcome-message">
+                        <div class="welcome-title">🚀 Welcome to Silicon Valley Ka Baap AI</div>
+                        <div class="welcome-subtitle">Choose a feature and start chatting with the most advanced AI system</div>
+                        <div class="feature-grid">
+                            <div class="feature-card" data-feature="sb">
+                                <div class="feature-emoji">🤖</div>
+                                <div class="feature-name">SB - Ultimate Mode</div>
+                            </div>
+                            <div class="feature-card" data-feature="chat">
+                                <div class="feature-emoji">💬</div>
+                                <div class="feature-name">AI Chat</div>
+                            </div>
+                            <div class="feature-card" data-feature="code_analyzer">
+                                <div class="feature-emoji">🧠</div>
+                                <div class="feature-name">Code Analysis</div>
+                            </div>
+                            <div class="feature-card" data-feature="idea_generator">
+                                <div class="feature-emoji">💡</div>
+                                <div class="feature-name">Idea Generator</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="input-container">
+                    <div class="file-upload">
+                        <input type="file" id="fileUpload" class="file-input" accept=".pdf,.txt,.docx,.csv,.jpg,.png,.jpeg">
+                        <button class="file-btn" onclick="document.getElementById('fileUpload').click()">
+                            📁 Upload File
+                        </button>
+                        <span class="file-info">Supports: PDF, TXT, DOCX, CSV, Images</span>
+                    </div>
+                    
+                    <div class="input-wrapper">
+                        <textarea 
+                            id="messageInput" 
+                            class="text-input" 
+                            placeholder="Type your message here... (Press Enter to send, Shift+Enter for new line)"
+                            rows="1"
+                        ></textarea>
+                        <button id="sendBtn" class="send-btn">
+                            📤 Send
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="static/js/app.js"></script>
+</body>
+</html>
