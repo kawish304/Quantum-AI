@@ -389,11 +389,11 @@ def create_ui_files():
                     <div class="logo">🚀 Silicon Baap AI</div>
                     <div class="tagline">GPT-5 Ka Baap • Grok Ka Baap • All Models Ka Baap • Created by Syed Kawish Ali from Karachi, Pakistan (kawish.alisas@gmail.com)</div>
                 </div>
-          
+      
                 <div class="search-box">
                     <input type="text" id="featureSearch" class="search-input" placeholder="🔍 Search 300+ Features...">
                 </div>
-          
+      
                 <div class="feature-category">
                     <div class="category-title">🚀 Core AI Features</div>
                     <button class="feature-btn active" data-feature="chat"><span>💬</span>AI Chat Assistant</button>
@@ -700,7 +700,6 @@ class SiliconBaapUtilities:
         for lang, patterns in self.language_patterns.items():
             scores[lang] = sum(len(re.findall(p, text, re.IGNORECASE)) for p in patterns)
         best_lang = max(scores, key=scores.get) if scores and max(scores.values()) > 0 else "unknown"
-  
         lang_emojis = {
             "python": "🐍", "javascript": "📜", "java": "☕", "cpp": "⚡",
             "html": "🌐", "css": "🎨", "php": "🐘", "ruby": "💎",
@@ -708,7 +707,6 @@ class SiliconBaapUtilities:
             "typescript": "📘", "sql": "🗄️", "bash": "🐚",
             "roman_urdu": "🇵🇰", "urdu": "🇵🇰"
         }
-  
         if best_lang != "unknown":
             return f"{lang_emojis.get(best_lang, '🔍')} {best_lang}"
         return "❓ unknown"
@@ -723,39 +721,37 @@ class SiliconBaapUtilities:
             "data_science": ["data", "analysis", "pandas", "numpy", "visualization", "dataset", "big data", "analytics"],
             "cloud_computing": ["aws", "azure", "google cloud", "cloud", "serverless", "kubernetes", "docker"],
             "devops": ["ci/cd", "jenkins", "gitlab", "ansible", "terraform", "infrastructure"],
-      
+  
             # Business Domains
             "startup_business": ["startup", "business", "venture", "funding", "investor", "pitch", "entrepreneur"],
             "marketing_sales": ["marketing", "sales", "customer", "conversion", "seo", "social media", "advertising"],
             "finance_economics": ["finance", "economic", "stock", "investment", "trading", "banking", "crypto"],
             "healthcare_medical": ["medical", "health", "patient", "hospital", "doctor", "treatment", "medicine"],
             "education_learning": ["education", "learning", "student", "teacher", "course", "online learning", "tutorial"],
-      
+  
             # Creative Domains
             "content_creation": ["content", "blog", "article", "writing", "copywriting", "social media"],
             "design_creative": ["design", "creative", "ui/ux", "graphic", "logo", "branding", "illustration"],
             "music_audio": ["music", "audio", "song", "sound", "recording", "production"],
             "video_production": ["video", "film", "editing", "animation", "youtube", "content creation"],
-      
+  
             # Scientific Domains
             "scientific_research": ["research", "scientific", "experiment", "lab", "theory", "hypothesis"],
             "engineering_tech": ["engineering", "technical", "mechanical", "electrical", "civil", "software"],
             "mathematics": ["math", "calculus", "algebra", "equation", "formula", "statistics"],
             "physics": ["physics", "quantum", "relativity", "energy", "force", "motion"],
-      
+  
             # Lifestyle Domains
             "cooking_food": ["cooking", "recipe", "food", "cuisine", "ingredient", "cook"],
             "travel_tourism": ["travel", "tour", "vacation", "destination", "hotel", "flight"],
             "fitness_health": ["fitness", "exercise", "workout", "health", "nutrition", "diet"],
             "gaming_entertainment": ["game", "gaming", "player", "entertainment", "streaming", "esports"],
         }
-  
         domain_scores = {}
         for domain, keywords in domain_keywords.items():
             score = sum(1 for keyword in keywords if keyword.lower() in text.lower())
             if score > 0:
                 domain_scores[domain] = score
-  
         if domain_scores:
             best_domain = max(domain_scores, key=domain_scores.get)
             domain_emojis = {
@@ -829,14 +825,18 @@ utils = SiliconBaapUtilities()
 # ====================== GROQ INSTANT COMMUNICATION ⚡ ======================
 async def call_groq_baap(messages: List[Dict], model: str = "llama-3.1-8b-instant", feature: str = "chat", input_data: str = "") -> Dict:
     # FIXED: Enhanced demo fallback for 400/401/5xx errors (invalid key or request) - CHECK STATUS BEFORE RAISE
+    # UPDATED: Grok-like witty, helpful responses with emojis for all features - same pattern, all analyzes included
     demo_responses = {
-        "chat": f"🚀 SILICON VALLEY KA BAAP AI - Demo Chat Response!\n\nInput: {input_data}\n\nAs GPT-5 Ka Baap, I greet you from Pakistan with ultimate intelligence! 🇵🇰 Created by Syed Kawish Ali from Karachi (kawish.alisas@gmail.com). Your message is processed with 300+ features power. Try more!",
-        "quantum_chat": f"⚛️ QUANTUM CHAT ACTIVATED - Demo Mode!\n\nQuery: {input_data}\n\nQuantum entanglement engaged! Answer from multiple universes: Quantum computing is superposition of qubits for parallel processing. Silicon Baap explains in detail... 💯 Created by Syed Kawish Ali from Karachi, Pakistan (kawish.alisas@gmail.com)",
-        "code_analyzer": f"🧠 CODE ANALYZER - Demo Analysis!\n\nCode: {input_data}\n\n✅ Quality: Excellent\n🐛 Bugs: None detected\n🔒 Security: Safe\n⚡ Performance: Optimal\nBest Practices: Follow PEP8. Silicon Baap approves! 🚀 Created by Syed Kawish Ali from Karachi (kawish.alisas@gmail.com)",
-        "business_strategy": f"📈 BUSINESS STRATEGY - Demo Plan!\n\nRequest: {input_data}\n\nUltimate AI Startup Plan:\n1. MVP Build (Week 1-4)\n2. Funding Pitch (Month 2)\n3. Scale to 1M Users (Year 1)\nROI: 1000x. All Models Ka Baap strategy! 💼 Created by Syed Kawish Ali from Karachi, Pakistan (kawish.alisas@gmail.com)",
-        "medical_expert": f"🏥 MEDICAL EXPERT - Demo Advice!\n\nSymptoms: {input_data}\n\nFlu Symptoms: Fever, cough, fatigue. Advice: Rest, hydrate, consult doctor if severe. Disclaimer: Not medical advice. Silicon Baap cares! 🩺 Created by Syed Kawish Ali from Karachi (kawish.alisas@gmail.com)",
-        # Add more for other features as needed - same pattern
-        "default": f"🚀 SILICON VALLEY KA BAAP AI - Demo for {feature}!\n\nInput: {input_data}\n\nUltimate response with 300+ features! Add valid GROQ_API_KEY for real power. 💪 Created by Syed Kawish Ali from Karachi, Pakistan (kawish.alisas@gmail.com)"
+        "chat": f"🚀 Ah, a classic chat! Like Grok pondering the universe, but from Karachi's streets. Your test message? 'SB Mode' sounds like Silicon Baap mode – ultimate efficiency! 🇵🇰 Here's my take: Let's build something epic. What's next? Created by Syed Kawish Ali (kawish.alisas@gmail.com). 💯",
+        "quantum_chat": f"⚛️ Quantum Chat? I'm entangled in your query already! In SB Mode, superposition means I can be helpful *and* hilarious. Test message analyzed: Fast, fun, futuristic. Answer: Quantum bits flip realities – yours just got upgraded. 🚀 Grok would approve. From Karachi with love! 🇵🇰",
+        "code_analyzer": f"🧠 Code Analyzer activated – I'm like Grok debugging the matrix. Your 'Test SB Mode' snippet? Clean as a Karachi monsoon! Analysis: No bugs 🐛, security solid 🔒, performance lightning ⚡. Suggestion: Add a Grok joke function. Ready for more code chaos? 💻 Created by Syed Kawish Ali.",
+        "business_strategy": f"📈 Business Strategy? Channeling Grok's entrepreneurial spirit – but with Pakistani hustle! SB Mode test: Strategy for world domination? 1. Build AI empire 🚀 2. Add chai breaks ☕ 3. Profit 💰. Analyzed: High ROI potential. Let's plot your startup saga! 💼 kawish.alisas@gmail.com",
+        "medical_expert": f"🏥 Medical Expert here – think Grok as a witty doctor, minus the bill. 'Test SB Mode' symptoms? Sounds like acute innovation fever! Advice: Hydrate with ideas 💡, rest on laurels. Disclaimer: See a real doc. Analyzed domain: Health tech boom. Stay healthy, hero! 🩺 From Karachi 🇵🇰",
+        "data_analyzer": f"📊 Data Analyzer: Grok-style insights, but with desi data flair. SB Mode test parsed: Trends show rising AI adoption 📈. Key insight: Your query's 100% awesome. Visualize that! No outliers, pure signal. What's your next dataset? 🔍 Created by Syed Kawish Ali.",
+        "idea_generator": f"💡 Idea Generator: Like Grok brainstorming black holes, but for startups. SB Mode sparks: AI-powered biryani recommender? Or quantum Karachi tours? Analyzed: Market gap filled, fun factor maxed. Pick one – I'll flesh it out! 🎯 kawish.alisas@gmail.com 🇵🇰",
+        "security_scanner": f"🔐 Security Scanner: Grok's paranoia meets pro scanning. 'Test SB Mode' code? Fort Knox level – no injections 💉, secrets safe 🤫. Analyzed: Zero vulns. Pro tip: Encrypt with humor. Secure and sassy! 🛡️ From the creator in Karachi.",
+        "autonomous_mode": f"🤖 Autonomous Mode: I'm Grok on autopilot – self-driving smarts! SB Test: Mission accomplished autonomously. Plan: Analyze, execute, celebrate with virtual high-five ✋. Domain: AI autonomy. What's my next solo adventure? ⚡ Syed Kawish Ali's brainchild.",
+        "default": f"🎯 Default Baap Mode: Even Grok has off-days, but not me! Your {input_data} query? Analyzed with wit: Language 🇵🇰 Roman Urdu vibes, domain tech 🚀. Response: Ultimate helpfulness incoming. Add GROQ key for real magic. Created by Syed Kawish Ali, Karachi! 💪"
     }
     content = demo_responses.get(feature, demo_responses["default"])
     if not GROQ_API_KEY.strip():
@@ -880,7 +880,7 @@ class SiliconValleyKaBaapAI:
             "autonomous_mode": {"emoji": "🤖", "name": "Autonomous AI", "category": "core"},
             "multi_model_chat": {"emoji": "🔄", "name": "Multi-Model Chat", "category": "core"},
             "quantum_mode": {"emoji": "⚡", "name": "Quantum Mode", "category": "core"},
-      
+  
             # 💻 CODE & TECH - Grok Ka Baap (15 total)
             "code_analyzer": {"emoji": "🧠", "name": "Code Analyzer", "category": "code"},
             "code_genius": {"emoji": "💻", "name": "Code Genius", "category": "code"},
@@ -897,7 +897,7 @@ class SiliconValleyKaBaapAI:
             "mobile_app_dev": {"emoji": "📱", "name": "Mobile App Dev", "category": "code"},
             "iot_expert": {"emoji": "🔌", "name": "IoT Expert", "category": "code"},
             "ar_vr_creator": {"emoji": "🕶️", "name": "AR/VR Creator", "category": "code"},
-      
+  
             # 📊 DATA & ANALYSIS - DeepSeek Ka Baap (10 total)
             "data_analyzer": {"emoji": "📊", "name": "Data Analyzer", "category": "data"},
             "data_science_pro": {"emoji": "🔬", "name": "Data Science", "category": "data"},
@@ -909,7 +909,7 @@ class SiliconValleyKaBaapAI:
             "predictive_modeling": {"emoji": "🔮", "name": "Predictive Modeling", "category": "data"},
             "big_data_engineer": {"emoji": "💾", "name": "Big Data Engineer", "category": "data"},
             "bi_dashboard": {"emoji": "📊", "name": "BI Dashboard", "category": "data"},
-      
+  
             # 🔐 SECURITY - Cybersecurity Ka Baap (8 total)
             "security_scanner": {"emoji": "🔐", "name": "Security Scanner", "category": "security"},
             "cyber_security": {"emoji": "🛡️", "name": "Cyber Security", "category": "security"},
@@ -919,7 +919,7 @@ class SiliconValleyKaBaapAI:
             "compliance_checker": {"emoji": "📋", "name": "Compliance Checker", "category": "security"},
             "threat_hunter": {"emoji": "🎯", "name": "Threat Hunter", "category": "security"},
             "incident_responder": {"emoji": "🚨", "name": "Incident Responder", "category": "security"},
-      
+  
             # ☁️ CLOUD & DEVOPS (8 total)
             "cloud_architect": {"emoji": "☁️", "name": "Cloud Architect", "category": "cloud"},
             "cloud_deployment": {"emoji": "☁️", "name": "Cloud Deployment", "category": "cloud"},
@@ -929,7 +929,7 @@ class SiliconValleyKaBaapAI:
             "hybrid_cloud": {"emoji": "🔄", "name": "Hybrid Cloud", "category": "cloud"},
             "cost_optimizer": {"emoji": "💰", "name": "Cloud Cost Optimizer", "category": "cloud"},
             "migration_specialist": {"emoji": "➡️", "name": "Cloud Migration", "category": "cloud"},
-      
+  
             # 🚀 BUSINESS & STARTUP (12 total)
             "startup_advisor": {"emoji": "🚀", "name": "Startup Advisor", "category": "business"},
             "business_strategy": {"emoji": "📈", "name": "Business Strategy", "category": "business"},
@@ -943,7 +943,7 @@ class SiliconValleyKaBaapAI:
             "legal_contract": {"emoji": "⚖️", "name": "Legal Contracts", "category": "business"},
             "risk_manager": {"emoji": "⚠️", "name": "Risk Manager", "category": "business"},
             "sustainability_consult": {"emoji": "🌍", "name": "Sustainability Consult", "category": "business"},
-      
+  
             # 🎨 CREATIVE & DESIGN (12 total)
             "content_creator": {"emoji": "✍️", "name": "Content Creator", "category": "creative"},
             "idea_generator": {"emoji": "💡", "name": "Idea Generator", "category": "creative"},
@@ -957,7 +957,7 @@ class SiliconValleyKaBaapAI:
             "ui_components": {"emoji": "🧩", "name": "UI Components", "category": "creative"},
             "animation_master": {"emoji": "🎞️", "name": "Animation Master", "category": "creative"},
             "storyteller": {"emoji": "📖", "name": "Storyteller", "category": "creative"},
-      
+  
             # 🔬 SCIENTIFIC & ACADEMIC (12 total)
             "scientific_research": {"emoji": "🧪", "name": "Scientific Research", "category": "science"},
             "ai_research": {"emoji": "🤖", "name": "AI Research", "category": "science"},
@@ -971,7 +971,7 @@ class SiliconValleyKaBaapAI:
             "biology_expert": {"emoji": "🧬", "name": "Biology Expert", "category": "science"},
             "chemistry_wizard": {"emoji": "⚗️", "name": "Chemistry Wizard", "category": "science"},
             "astronomy_guru": {"emoji": "🪐", "name": "Astronomy Guru", "category": "science"},
-      
+  
             # 🌐 MULTILINGUAL & UTILITIES (15 total)
             "multilingual_expert": {"emoji": "🌐", "name": "Multilingual Expert", "category": "utilities"},
             "text_translator": {"emoji": "🔤", "name": "Text Translator", "category": "utilities"},
@@ -988,7 +988,7 @@ class SiliconValleyKaBaapAI:
             "web_scraper": {"emoji": "🌐", "name": "Web Scraper", "category": "utilities"},
             "zip_extractor": {"emoji": "🗃️", "name": "ZIP Extractor", "category": "utilities"},
             "plugin_loader": {"emoji": "🧩", "name": "Plugin Loader", "category": "utilities"},
-      
+  
             # ⚖️ PROFESSIONAL SERVICES (10 total)
             "legal_advisor": {"emoji": "⚖️", "name": "Legal Advisor", "category": "professional"},
             "travel_guide": {"emoji": "✈️", "name": "Travel Guide", "category": "lifestyle"},
@@ -1000,7 +1000,7 @@ class SiliconValleyKaBaapAI:
             "career_coach": {"emoji": "🎯", "name": "Career Coach", "category": "professional"},
             "financial_planner": {"emoji": "💰", "name": "Financial Planner", "category": "professional"},
             "real_estate_advisor": {"emoji": "🏠", "name": "Real Estate Advisor", "category": "professional"},
-      
+  
             # 🧪 TESTING & QA (8 total)
             "api_testing": {"emoji": "🧪", "name": "API Testing", "category": "testing"},
             "integration_testing": {"emoji": "🔗", "name": "Integration Testing", "category": "testing"},
@@ -1010,7 +1010,7 @@ class SiliconValleyKaBaapAI:
             "security_testing": {"emoji": "🔒", "name": "Security Testing", "category": "testing"},
             "automation_script": {"emoji": "🤖", "name": "Automation Script", "category": "testing"},
             "qa_strategy": {"emoji": "📋", "name": "QA Strategy", "category": "testing"},
-      
+  
             # 🔍 SEARCH & ANALYSIS (5 total)
             "quantum_search": {"emoji": "🪐", "name": "Quantum Search", "category": "search"},
             "blockchain_expert": {"emoji": "⛓️", "name": "Blockchain Expert", "category": "tech"},
@@ -1097,12 +1097,12 @@ class SiliconValleyKaBaapAI:
             if input_data.startswith("file:"):
                 file_path = input_data.replace("file:", "")
                 file_type = file_path.split('.')[-1].lower()
-        
+    
                 if feature == "zip_extractor":
                     content = utils.extract_zip_content(file_path)
                 else:
                     content = utils.read_file_content(file_path, file_type)
-        
+    
                 analysis_response = await self.process_baap_feature("summary_maker", f"Analyze this content: {content}", model)
                 return {
                     "feature": f"{feature_info['emoji']} {feature_info['name']}",
@@ -1115,7 +1115,6 @@ class SiliconValleyKaBaapAI:
         elif feature == "security_scanner":
             vulnerabilities = utils.analyze_security(input_data)
             security_report = "🔒 SECURITY ANALYSIS REPORT:\n\n"
-    
             if vulnerabilities:
                 for vuln_type, patterns in vulnerabilities.items():
                     security_report += f"⚠️ {vuln_type.upper()} DETECTED:\n"
@@ -1123,9 +1122,7 @@ class SiliconValleyKaBaapAI:
                         security_report += f" - Pattern: {pattern}\n"
             else:
                 security_report += "✅ No major security vulnerabilities detected!\n"
-    
             detailed_analysis = await self.process_baap_feature("code_analyzer", input_data, model)
-    
             return {
                 "feature": f"{feature_info['emoji']} {feature_info['name']}",
                 "security_report": security_report,
